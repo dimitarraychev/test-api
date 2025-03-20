@@ -43,6 +43,8 @@ app.post("/", (req, res) => {
     console.error("Error parsing payload_json:", error);
     res.status(400).json({ message: "Invalid JSON format" });
   }
+
+  console.log("EOF----------------");
 });
 
 app.listen(PORT, () => {

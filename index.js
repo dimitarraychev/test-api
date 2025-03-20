@@ -13,13 +13,13 @@ app.post("/", (req, res) => {
 
   let response = {};
 
-  if (command === "get_account_balance")
-    response = {
-      currency: "EUR",
-      totalbalance: totalbalance,
-      response_message: "ok",
-      response_code: "ok",
-    };
+  // if (command === "get_account_balance")
+  response = {
+    currency: "EUR",
+    totalbalance: totalbalance,
+    response_message: "ok",
+    response_code: "ok",
+  };
 
   res.json(response);
 });

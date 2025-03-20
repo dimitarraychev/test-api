@@ -7,9 +7,10 @@ let totalbalance = 99880;
 app.use(express.json());
 
 app.post("/", (req, res) => {
-  console.log("Body: " + req.body);
-  console.log("Headers: " + req.headers);
-  console.log("Parsed body: " + JSON.parse(req.body));
+  console.log("Headers:");
+  console.log(req.headers);
+  console.log("Body:");
+  console.log(req.body);
 
   const { command } = req.body;
 

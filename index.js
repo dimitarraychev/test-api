@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let totalbalance = 99880;
+let totalbalance = 10000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +24,19 @@ app.post("/", (req, res) => {
         response = {
           currency: "EUR",
           totalbalance: totalbalance,
+          response_message: "ok",
+          response_code: "ok",
+        };
+
+        res.json(response);
+        break;
+
+      case "add_account_game_bet":
+        const amount = payload.amount;
+
+        response = {
+          currency: "EUR",
+          totalbalance: totalbalance - amount,
           response_message: "ok",
           response_code: "ok",
         };

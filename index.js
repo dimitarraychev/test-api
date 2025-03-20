@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3000;
 let totalbalance = 99880;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.post("/", (req, res) => {
   console.log("Headers:");

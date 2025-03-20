@@ -19,7 +19,7 @@ app.post("/", (req, res) => {
   // if (command === "get_account_balance")
   response = {
     currency: "EUR",
-    // totalbalance: totalbalance,
+    totalbalance: totalbalance,
     response_message: "ok",
     response_code: "ok",
   };

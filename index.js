@@ -8,6 +8,7 @@ app.use(express.json());
 
 app.post("/", (req, res) => {
   console.log(req.body);
+  console.log(req.headers);
 
   const { command } = req.body;
 

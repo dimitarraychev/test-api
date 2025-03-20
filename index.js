@@ -31,8 +31,16 @@ app.post("/", (req, res) => {
         res.json(response);
         break;
 
-      case "add_account_game_win":
-        res.json({ message: "Game win logic here" });
+      case "cancel":
+        response = {
+          currency: "EUR",
+          totalbalance: totalbalance,
+          response_message: "ok",
+          response_code: "ok",
+          freeround_limit: 0,
+        };
+
+        res.json(response);
         break;
 
       default:

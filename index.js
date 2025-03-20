@@ -33,7 +33,7 @@ app.post("/", (req, res) => {
 
       case "add_account_game_bet":
         response.totalbalance = totalbalance - amount;
-        response.response_code = "limit_error";
+        response.response_code = "error";
 
         res.json(response);
         break;

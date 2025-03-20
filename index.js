@@ -8,8 +8,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/", (req, res) => {
-  console.log("Headers:");
-  console.log(req.headers);
   console.log("Body:");
   console.log(req.body);
 

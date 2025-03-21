@@ -32,14 +32,16 @@ app.post("/", (req, res) => {
         break;
 
       case "add_account_game_bet":
-        response.totalbalance = totalbalance - amount;
+        totalbalance -= amount;
+        response.totalbalance = totalbalance;
         response.response_code = "error";
 
         res.json(response);
         break;
 
       case "add_account_game_win":
-        response.totalbalance = totalbalance + amount;
+        totalbalance += amount;
+        response.totalbalance = totalbalance;
 
         res.json(response);
         break;
@@ -60,7 +62,7 @@ app.post("/", (req, res) => {
     res.status(400).json({ message: "Invalid JSON format" });
   }
 
-  console.log("EOF----------------");
+  console.log("EOL--------------------------------");
 });
 
 app.listen(PORT, () => {

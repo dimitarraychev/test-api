@@ -13,7 +13,7 @@ app.post("/", (req, res) => {
   const response = {
     currency: "EUR",
     response_message: "ok",
-    response_code: "oasdasd",
+    response_code: "ok",
   };
 
   try {
@@ -33,7 +33,11 @@ app.post("/", (req, res) => {
         totalBalance -= amount;
         response.totalbalance = totalBalance;
 
-        res.json(response);
+        res.status(500).json({
+          error: true,
+          message: "Something went wrong!",
+          code: 500,
+        });
         break;
 
       case "add_account_game_win":

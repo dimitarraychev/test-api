@@ -33,11 +33,7 @@ app.post("/", (req, res) => {
         totalBalance -= amount;
         response.totalbalance = totalBalance;
 
-        res.status(500).json({
-          error: true,
-          message: "Something went wrong!",
-          code: 500,
-        });
+        res.json(response);
         break;
 
       case "add_account_game_win":

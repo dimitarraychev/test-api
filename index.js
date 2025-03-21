@@ -2,9 +2,8 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let totalbalance = 100000;
+let totalBalance = 100000;
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/", (req, res) => {
@@ -19,45 +18,41 @@ app.post("/", (req, res) => {
 
   try {
     const payload = JSON.parse(req.body.payload_json);
-    const command = payload.command;
-    const amount = payload.amount;
-    const betAmount = payload.bet_amount;
-    const winAmount = payload.win_amount;
+    const { command, amount, bet_amount, win_amount } = payload;
 
     console.log(`Received Command: ${command}`);
 
     switch (command) {
       case "get_account_balance":
-        response.totalbalance = totalbalance;
+        response.totalbalance = totalBalance;
 
         res.json(response);
         break;
 
       case "add_account_game_bet":
-        totalbalance -= amount;
-        response.totalbalance = totalbalance;
+        totalBalance -= amount;
+        response.totalbalance = totalBalance;
 
         res.json(response);
         break;
 
       case "add_account_game_win":
-        totalbalance += amount;
-        response.totalbalance = totalbalance;
-        response.response_code = "error";
+        totalBalance += amount;
+        response.totalbalance = totalBalance;
 
         res.json(response);
         break;
 
       case "add_account_game_bet_and_win":
-        totalbalance -= betAmount;
-        totalbalance += winAmount;
-        response.totalbalance = totalbalance;
+        totalBalance -= bet_amount;
+        totalBalance += win_amount;
+        response.totalbalance = totalBalance;
 
         res.json(response);
         break;
 
       case "cancel":
-        response.totalbalance = totalbalance;
+        response.totalbalance = totalBalance;
         response.freeround_limit = 0;
 
         res.json(response);

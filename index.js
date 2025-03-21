@@ -21,6 +21,8 @@ app.post("/", (req, res) => {
     const payload = JSON.parse(req.body.payload_json);
     const command = payload.command;
     const amount = payload.amount;
+    const betAmount = payload.bet_amount;
+    const winAmount = payload.win_amount;
 
     console.log(`Received Command: ${command}`);
 
@@ -34,13 +36,21 @@ app.post("/", (req, res) => {
       case "add_account_game_bet":
         totalbalance -= amount;
         response.totalbalance = totalbalance;
-        response.response_code = "error";
 
         res.json(response);
         break;
 
       case "add_account_game_win":
         totalbalance += amount;
+        response.totalbalance = totalbalance;
+        response.response_code = "error";
+
+        res.json(response);
+        break;
+
+      case "add_account_game_bet_and_win":
+        totalbalance -= betAmount;
+        totalbalance += winAmount;
         response.totalbalance = totalbalance;
 
         res.json(response);

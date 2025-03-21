@@ -32,7 +32,7 @@ app.post("/", (req, res) => {
       case "add_account_game_bet":
         totalBalance -= amount;
         response.totalbalance = totalBalance;
-        response.code = "error";
+        response.response_code = "error";
 
         res.json(response);
         break;

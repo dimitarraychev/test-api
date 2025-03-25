@@ -31,6 +31,7 @@ app.post("/", (req, res) => {
 
       case "add_account_game_bet":
         totalBalance -= amount;
+
         response.totalbalance = totalBalance;
         // response.response_code = "error";
 
@@ -39,6 +40,7 @@ app.post("/", (req, res) => {
 
       case "add_account_game_win":
         totalBalance += amount;
+
         response.totalbalance = totalBalance;
 
         res.json(response);
@@ -47,12 +49,15 @@ app.post("/", (req, res) => {
       case "add_account_game_bet_and_win":
         totalBalance -= bet_amount;
         totalBalance += win_amount;
+
         response.totalbalance = totalBalance;
 
         res.json(response);
         break;
 
       case "cancel":
+        totalBalance += amount;
+
         response.freeround_limit = 0;
         response.totalbalance = totalBalance;
 

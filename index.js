@@ -14,7 +14,6 @@ app.post("/", (req, res) => {
     currency: "EUR",
     response_message: "ok",
     response_code: "ok",
-    totalbalance: totalBalance,
   };
 
   try {
@@ -25,11 +24,14 @@ app.post("/", (req, res) => {
 
     switch (command) {
       case "get_account_balance":
+        response.totalbalance = totalBalance;
+
         res.json(response);
         break;
 
       case "add_account_game_bet":
         totalBalance -= amount;
+        response.totalbalance = totalBalance;
         // response.response_code = "error";
 
         res.json(response);
@@ -37,6 +39,7 @@ app.post("/", (req, res) => {
 
       case "add_account_game_win":
         totalBalance += amount;
+        response.totalbalance = totalBalance;
 
         res.json(response);
         break;
@@ -44,12 +47,14 @@ app.post("/", (req, res) => {
       case "add_account_game_bet_and_win":
         totalBalance -= bet_amount;
         totalBalance += win_amount;
+        response.totalbalance = totalBalance;
 
         res.json(response);
         break;
 
       case "cancel":
         response.freeround_limit = 0;
+        response.totalbalance = totalBalance;
 
         res.json(response);
         break;

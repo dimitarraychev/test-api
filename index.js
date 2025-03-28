@@ -33,7 +33,7 @@ app.post("/", (req, res) => {
         totalBalance -= amount;
 
         response.totalbalance = totalBalance;
-        response.response_code = "error";
+        // response.response_code = "error";
 
         res.json(response);
         break;

@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let totalBalance = 123.456;
+let totalBalance = 123456;
 
 app.use(express.urlencoded({ extended: true }));
 

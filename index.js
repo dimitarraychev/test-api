@@ -62,7 +62,7 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
-        response.response_code = "ok";
+        // response.response_code = "ok";
         break;
 
       case "add_account_game_win":

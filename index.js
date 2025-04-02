@@ -20,7 +20,12 @@ app.post("/", (req, res) => {
   console.log(req.body);
 
   try {
-    const payload = JSON.parse(req.body.payload_json);
+    let payload = req.body.payload_json;
+
+    if (typeof req.body.payload_json === "string") {
+      payload = JSON.parse(req.body.payload_json);
+    }
+
     const { command, amount, bet_amount, win_amount, command_to_fail } =
       payload;
 

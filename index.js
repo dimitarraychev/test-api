@@ -7,8 +7,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 let totalBalance = 123456;
-const simulateError = false;
-const command_to_fail = "";
+let simulateError = false;
+let command_to_fail = "";
 
 const response = {
   currency: "EUR",

@@ -48,7 +48,6 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
-        response.response_code = "ok";
         break;
 
       case "add_account_game_bet":
@@ -62,7 +61,6 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
-        // response.response_code = "ok";
         break;
 
       case "add_account_game_win":
@@ -76,7 +74,6 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
-        response.response_code = "ok";
         break;
 
       case "add_account_game_bet_and_win":
@@ -91,7 +88,6 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
-        response.response_code = "ok";
         break;
 
       case "cancel":
@@ -106,7 +102,6 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
-        response.response_code = "ok";
         break;
 
       default:

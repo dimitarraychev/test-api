@@ -7,7 +7,9 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 let totalBalance = 123456;
-const simulateError = { isActive: false, command_to_fail: "" };
+const simulateError = false;
+const command_to_fail = "";
+
 const response = {
   currency: "EUR",
   response_message: "ok",
@@ -30,8 +32,8 @@ app.post("/", (req, res) => {
 
     switch (command) {
       case "simulate_error":
-        simulateError.isActive = true;
-        simulateError.command_to_fail = command_to_fail;
+        simulateError = true;
+        command_to_fail = command_to_fail;
 
         res.json(response);
         break;
@@ -39,48 +41,42 @@ app.post("/", (req, res) => {
       case "get_account_balance":
         response.totalbalance = totalBalance;
 
-        if (
-          simulateError.isActive &&
-          simulateError.command_to_fail === command
-        ) {
+        if (simulateError && command_to_fail === command) {
           response.response_code = "error";
-          simulateError.isActive = false;
-          simulateError.command_to_fail = "";
+          simulateError = false;
+          command_to_fail = "";
         }
 
         res.json(response);
+        response.response_code = "ok";
         break;
 
       case "add_account_game_bet":
         totalBalance -= amount;
         response.totalbalance = totalBalance;
 
-        if (
-          simulateError.isActive &&
-          simulateError.command_to_fail === command
-        ) {
+        if (simulateError && command_to_fail === command) {
           response.response_code = "error";
-          simulateError.isActive = false;
-          simulateError.command_to_fail = "";
+          simulateError = false;
+          command_to_fail = "";
         }
 
         res.json(response);
+        response.response_code = "ok";
         break;
 
       case "add_account_game_win":
         totalBalance += amount;
         response.totalbalance = totalBalance;
 
-        if (
-          simulateError.isActive &&
-          simulateError.command_to_fail === command
-        ) {
+        if (simulateError && command_to_fail === command) {
           response.response_code = "error";
-          simulateError.isActive = false;
-          simulateError.command_to_fail = "";
+          simulateError = false;
+          command_to_fail = "";
         }
 
         res.json(response);
+        response.response_code = "ok";
         break;
 
       case "add_account_game_bet_and_win":
@@ -88,15 +84,14 @@ app.post("/", (req, res) => {
         totalBalance += win_amount;
         response.totalbalance = totalBalance;
 
-        if (
-          simulateError.isActive &&
-          simulateError.command_to_fail === command
-        ) {
+        if (simulateError && command_to_fail === command) {
           response.response_code = "error";
-          simulateError = { isActive: false, command_to_fail: "" };
+          simulateError = false;
+          command_to_fail = "";
         }
 
         res.json(response);
+        response.response_code = "ok";
         break;
 
       case "cancel":
@@ -104,16 +99,14 @@ app.post("/", (req, res) => {
         response.freeround_limit = 0;
         response.totalbalance = totalBalance;
 
-        if (
-          simulateError.isActive &&
-          simulateError.command_to_fail === command
-        ) {
+        if (simulateError && command_to_fail === command) {
           response.response_code = "error";
-          simulateError.isActive = false;
-          simulateError.command_to_fail = "";
+          simulateError = false;
+          command_to_fail = "";
         }
 
         res.json(response);
+        response.response_code = "ok";
         break;
 
       default:

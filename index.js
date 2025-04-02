@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 
 let totalBalance = 123456;
 let simulateError = false;
-let command_to_fail = "";
+let commandToFail = "";
 
 const response = {
   currency: "EUR",
@@ -33,7 +33,7 @@ app.post("/", (req, res) => {
     switch (command) {
       case "simulate_error":
         simulateError = true;
-        command_to_fail = command_to_fail;
+        commandToFail = command_to_fail;
 
         res.json(response);
         break;
@@ -44,7 +44,7 @@ app.post("/", (req, res) => {
         if (simulateError && command_to_fail === command) {
           response.response_code = "error";
           simulateError = false;
-          command_to_fail = "";
+          commandToFail = "";
         }
 
         res.json(response);
@@ -58,7 +58,7 @@ app.post("/", (req, res) => {
         if (simulateError && command_to_fail === command) {
           response.response_code = "error";
           simulateError = false;
-          command_to_fail = "";
+          commandToFail = "";
         }
 
         res.json(response);
@@ -72,7 +72,7 @@ app.post("/", (req, res) => {
         if (simulateError && command_to_fail === command) {
           response.response_code = "error";
           simulateError = false;
-          command_to_fail = "";
+          commandToFail = "";
         }
 
         res.json(response);
@@ -87,7 +87,7 @@ app.post("/", (req, res) => {
         if (simulateError && command_to_fail === command) {
           response.response_code = "error";
           simulateError = false;
-          command_to_fail = "";
+          commandToFail = "";
         }
 
         res.json(response);
@@ -102,7 +102,7 @@ app.post("/", (req, res) => {
         if (simulateError && command_to_fail === command) {
           response.response_code = "error";
           simulateError = false;
-          command_to_fail = "";
+          commandToFail = "";
         }
 
         res.json(response);

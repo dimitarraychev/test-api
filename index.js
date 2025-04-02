@@ -44,7 +44,8 @@ app.post("/", (req, res) => {
           simulateError.command_to_fail === command
         ) {
           response.response_code = "error";
-          simulateError = { isActive: false, command_to_fail: "" };
+          simulateError.isActive = false;
+          simulateError.command_to_fail = "";
         }
 
         res.json(response);
@@ -59,7 +60,8 @@ app.post("/", (req, res) => {
           simulateError.command_to_fail === command
         ) {
           response.response_code = "error";
-          simulateError = { isActive: false, command_to_fail: "" };
+          simulateError.isActive = false;
+          simulateError.command_to_fail = "";
         }
 
         res.json(response);
@@ -74,7 +76,8 @@ app.post("/", (req, res) => {
           simulateError.command_to_fail === command
         ) {
           response.response_code = "error";
-          simulateError = { isActive: false, command_to_fail: "" };
+          simulateError.isActive = false;
+          simulateError.command_to_fail = "";
         }
 
         res.json(response);
@@ -106,7 +109,8 @@ app.post("/", (req, res) => {
           simulateError.command_to_fail === command
         ) {
           response.response_code = "error";
-          simulateError = { isActive: false, command_to_fail: "" };
+          simulateError.isActive = false;
+          simulateError.command_to_fail = "";
         }
 
         res.json(response);

@@ -41,7 +41,7 @@ app.post("/", (req, res) => {
       case "get_account_balance":
         response.totalbalance = totalBalance;
 
-        if (simulateError && command_to_fail === command) {
+        if (simulateError && commandToFail === command) {
           response.response_code = "error";
           simulateError = false;
           commandToFail = "";
@@ -54,7 +54,7 @@ app.post("/", (req, res) => {
         totalBalance -= amount;
         response.totalbalance = totalBalance;
 
-        if (simulateError && command_to_fail === command) {
+        if (simulateError && commandToFail === command) {
           response.response_code = "error";
           simulateError = false;
           commandToFail = "";
@@ -67,7 +67,7 @@ app.post("/", (req, res) => {
         totalBalance += amount;
         response.totalbalance = totalBalance;
 
-        if (simulateError && command_to_fail === command) {
+        if (simulateError && commandToFail === command) {
           response.response_code = "error";
           simulateError = false;
           commandToFail = "";
@@ -81,7 +81,7 @@ app.post("/", (req, res) => {
         totalBalance += win_amount;
         response.totalbalance = totalBalance;
 
-        if (simulateError && command_to_fail === command) {
+        if (simulateError && commandToFail === command) {
           response.response_code = "error";
           simulateError = false;
           commandToFail = "";
@@ -95,7 +95,7 @@ app.post("/", (req, res) => {
         response.freeround_limit = 0;
         response.totalbalance = totalBalance;
 
-        if (simulateError && command_to_fail === command) {
+        if (simulateError && commandToFail === command) {
           response.response_code = "error";
           simulateError = false;
           commandToFail = "";

@@ -22,10 +22,18 @@ const resetResponse = () => {
   commandToFail = "";
 };
 
-app.post("/", (req, res) => {
-  console.log("Body:");
-  console.log(req.body);
+const generateLogs = (payload, command) => {
+  console.log(`Received Command: ${command}`);
+  console.log("Payload:");
+  console.log(payload);
+  console.log("Simulation status:");
+  console.log(simulateError, commandToFail);
+  console.log("Response:");
+  console.log(response);
+  console.log("EOL--------------------------------");
+};
 
+app.post("/", (req, res) => {
   try {
     const payload = req.body.payload_json
       ? JSON.parse(req.body.payload_json)
@@ -34,13 +42,12 @@ app.post("/", (req, res) => {
     const { command, amount, bet_amount, win_amount, command_to_fail } =
       payload;
 
-    console.log(`Received Command: ${command}`);
-
     switch (command) {
       case "simulate_error":
         simulateError = true;
         commandToFail = command_to_fail;
 
+        generateLogs(payload, command);
         res.json(response);
         break;
 
@@ -51,6 +58,7 @@ app.post("/", (req, res) => {
           response.response_code = "error";
         }
 
+        generateLogs(payload, command);
         res.json(response);
 
         if (simulateError && commandToFail === command) {
@@ -66,6 +74,7 @@ app.post("/", (req, res) => {
           response.response_code = "error";
         }
 
+        generateLogs(payload, command);
         res.json(response);
 
         if (simulateError && commandToFail === command) {
@@ -81,6 +90,7 @@ app.post("/", (req, res) => {
           response.response_code = "error";
         }
 
+        generateLogs(payload, command);
         res.json(response);
 
         if (simulateError && commandToFail === command) {
@@ -97,6 +107,7 @@ app.post("/", (req, res) => {
           response.response_code = "error";
         }
 
+        generateLogs(payload, command);
         res.json(response);
 
         if (simulateError && commandToFail === command) {
@@ -113,6 +124,7 @@ app.post("/", (req, res) => {
           response.response_code = "error";
         }
 
+        generateLogs(payload, command);
         res.json(response);
 
         if (simulateError && commandToFail === command) {
@@ -128,11 +140,6 @@ app.post("/", (req, res) => {
     console.error("Error parsing payload_json:", error);
     res.status(400).json({ message: "Invalid JSON format" });
   }
-  console.log("Simulation status:");
-  console.log(simulateError, commandToFail);
-  console.log("Response:");
-  console.log(response);
-  console.log("EOL--------------------------------");
 });
 
 app.listen(PORT, () => {

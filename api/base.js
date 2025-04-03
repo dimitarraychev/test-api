@@ -28,7 +28,7 @@ const generateLogs = (payload, command) => {
   console.log("EOL---------------------------------------------");
 };
 
-app.post("/", (req, res) => {
+router.post("/", (req, res) => {
   try {
     const payload = req.body.payload_json
       ? JSON.parse(req.body.payload_json)

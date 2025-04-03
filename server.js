@@ -7,10 +7,11 @@ const baseApi = require("./api/base");
 const v2Api = require("./api/softSwissV2");
 
 app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", baseApi);
-app.use("/", v2Api);
+app.use("/v2", v2Api);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}...`);

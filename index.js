@@ -52,7 +52,10 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
-        resetResponse();
+
+        if (simulateError && commandToFail === command) {
+          resetResponse();
+        }
         break;
 
       case "add_account_game_bet":
@@ -64,7 +67,10 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
-        resetResponse();
+
+        if (simulateError && commandToFail === command) {
+          resetResponse();
+        }
         break;
 
       case "add_account_game_win":
@@ -76,7 +82,10 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
-        resetResponse();
+
+        if (simulateError && commandToFail === command) {
+          resetResponse();
+        }
         break;
 
       case "add_account_game_bet_and_win":
@@ -86,12 +95,13 @@ app.post("/", (req, res) => {
 
         if (simulateError && commandToFail === command) {
           response.response_code = "error";
-          simulateError = false;
-          commandToFail = "";
         }
 
         res.json(response);
-        resetResponse();
+
+        if (simulateError && commandToFail === command) {
+          resetResponse();
+        }
         break;
 
       case "cancel":
@@ -101,12 +111,13 @@ app.post("/", (req, res) => {
 
         if (simulateError && commandToFail === command) {
           response.response_code = "error";
-          simulateError = false;
-          commandToFail = "";
         }
 
         res.json(response);
-        resetResponse();
+
+        if (simulateError && commandToFail === command) {
+          resetResponse();
+        }
         break;
 
       default:

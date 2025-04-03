@@ -4,13 +4,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const baseApi = require("./api/base");
-const v2Api = require("./api/softSwissV2");
+const softSwissV2Api = require("./api/softSwissV2");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", baseApi);
-app.use("/v2", v2Api);
+app.use("/v2/provider_a8r.:category/:action", softSwissV2Api);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}...`);

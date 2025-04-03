@@ -14,3 +14,5 @@ const generateLogs = (
   console.log(response);
   console.log("EOL---------------------------------------------");
 };
+
+module.exports = generateLogs;

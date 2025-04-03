@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-router.post(":category/:action", (req, res) => {
+router.post("/:category/:action", (req, res) => {
   const { category, action } = req.params;
-
   console.log(`Category: ${category}, Action: ${action}`);
 
   switch (`${category}/${action}`) {

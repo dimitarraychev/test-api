@@ -16,6 +16,12 @@ const response = {
   response_code: "ok",
 };
 
+const resetResponse = () => {
+  response.response_code = "ok";
+  simulateError = false;
+  commandToFail = "";
+};
+
 app.post("/", (req, res) => {
   console.log("Body:");
   console.log(req.body);
@@ -43,11 +49,10 @@ app.post("/", (req, res) => {
 
         if (simulateError && commandToFail === command) {
           response.response_code = "error";
-          simulateError = false;
-          commandToFail = "";
         }
 
         res.json(response);
+        resetResponse();
         break;
 
       case "add_account_game_bet":
@@ -56,11 +61,10 @@ app.post("/", (req, res) => {
 
         if (simulateError && commandToFail === command) {
           response.response_code = "error";
-          simulateError = false;
-          commandToFail = "";
         }
 
         res.json(response);
+        resetResponse();
         break;
 
       case "add_account_game_win":
@@ -69,11 +73,10 @@ app.post("/", (req, res) => {
 
         if (simulateError && commandToFail === command) {
           response.response_code = "error";
-          simulateError = false;
-          commandToFail = "";
         }
 
         res.json(response);
+        resetResponse();
         break;
 
       case "add_account_game_bet_and_win":
@@ -88,6 +91,7 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
+        resetResponse();
         break;
 
       case "cancel":
@@ -102,6 +106,7 @@ app.post("/", (req, res) => {
         }
 
         res.json(response);
+        resetResponse();
         break;
 
       default:
@@ -112,7 +117,7 @@ app.post("/", (req, res) => {
     console.error("Error parsing payload_json:", error);
     res.status(400).json({ message: "Invalid JSON format" });
   }
-  console.log("Error:");
+  console.log("Simulation status:");
   console.log(simulateError, commandToFail);
   console.log("Response:");
   console.log(response);

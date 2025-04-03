@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 3000;
 const baseApi = require("./api/base");
 const v2Api = require("./api/softSwissV2");
 
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

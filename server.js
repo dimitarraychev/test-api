@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", baseApi);
-app.use("/v2/provider_a8r.", softSwissV2Api);
+app.use("/v2/provider_a8r", softSwissV2Api);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}...`);

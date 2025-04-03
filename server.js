@@ -1,0 +1,17 @@
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+const baseApi = require("./api/base");
+const v2Api = require("./api/softSwissV2");
+
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", baseApi);
+app.use("/", v2Api);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}...`);
+});

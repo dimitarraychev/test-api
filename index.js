@@ -30,7 +30,7 @@ const generateLogs = (payload, command) => {
   console.log(simulateError, commandToFail);
   console.log("Response:");
   console.log(response);
-  console.log("EOL--------------------------------");
+  console.log("EOL---------------------------------------------");
 };
 
 app.post("/", (req, res) => {

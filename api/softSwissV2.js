@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  console.log(req);
-
+// Handle the dynamic route with a dot between category and action
+router.post("/:category.:action", (req, res) => {
   const { category, action } = req.params;
 
   console.log(`Category: ${category}, Action: ${action}`);
 
+  // Handle specific category/action combinations
   switch (`${category}/${action}`) {
     case "provider_a8r.Promo/Win":
       return res.json({ message: "Promo Win processed" });

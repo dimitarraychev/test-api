@@ -17,17 +17,6 @@ const resetResponse = () => {
   commandToFail = "";
 };
 
-const generateLogs = (payload, command) => {
-  console.log(`Received Command: ${command}`);
-  console.log("Payload:");
-  console.log(payload);
-  console.log("Simulation status:");
-  console.log(simulateError, commandToFail);
-  console.log("Response:");
-  console.log(response);
-  console.log("EOL---------------------------------------------");
-};
-
 router.post("/", (req, res) => {
   try {
     const payload = req.body.payload_json
@@ -42,7 +31,7 @@ router.post("/", (req, res) => {
         simulateError = true;
         commandToFail = command_to_fail;
 
-        generateLogs(payload, command);
+        generateLogs(payload, command, simulateError, commandToFail, response);
         res.json(response);
         break;
 
@@ -53,12 +42,8 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command);
+        generateLogs(payload, command, simulateError, commandToFail, response);
         res.json(response);
-
-        if (simulateError && commandToFail === command) {
-          resetResponse();
-        }
         break;
 
       case "add_account_game_bet":
@@ -69,12 +54,8 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command);
+        generateLogs(payload, command, simulateError, commandToFail, response);
         res.json(response);
-
-        if (simulateError && commandToFail === command) {
-          resetResponse();
-        }
         break;
 
       case "add_account_game_win":
@@ -85,12 +66,8 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command);
+        generateLogs(payload, command, simulateError, commandToFail, response);
         res.json(response);
-
-        if (simulateError && commandToFail === command) {
-          resetResponse();
-        }
         break;
 
       case "add_account_game_bet_and_win":
@@ -102,12 +79,8 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command);
+        generateLogs(payload, command, simulateError, commandToFail, response);
         res.json(response);
-
-        if (simulateError && commandToFail === command) {
-          resetResponse();
-        }
         break;
 
       case "cancel":
@@ -119,12 +92,8 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command);
+        generateLogs(payload, command, simulateError, commandToFail, response);
         res.json(response);
-
-        if (simulateError && commandToFail === command) {
-          resetResponse();
-        }
         break;
 
       default:
@@ -134,6 +103,10 @@ router.post("/", (req, res) => {
   } catch (error) {
     console.error("Error parsing payload_json:", error);
     res.status(400).json({ message: "Invalid JSON format" });
+  }
+
+  if (simulateError && commandToFail === command) {
+    resetResponse();
   }
 });
 

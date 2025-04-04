@@ -16,6 +16,8 @@ const generateLogsBase = (
 };
 
 const generateLogsSoftSwissV2 = (req) => {
+  console.log("URL:");
+  console.log(req.originalUrl);
   console.log("Headers:");
   console.log(req.headers);
   console.log("Body:");

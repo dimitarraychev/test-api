@@ -10,7 +10,7 @@ let totalBalance = 123456;
 //   res.json({ message: "Balance retrieved", balance: totalBalance });
 // });
 
-router.post("/:subroute(*)", (req, res) => {
+router.post("/:subroute*", (req, res) => {
   generateLogsSoftSwissV2(req);
 
   const { subroute } = req.params;

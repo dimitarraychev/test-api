@@ -1,4 +1,4 @@
-const generateLogs = (
+const generateLogsBase = (
   payload,
   command,
   simulateError,
@@ -15,4 +15,12 @@ const generateLogs = (
   console.log("EOL---------------------------------------------");
 };
 
-module.exports = generateLogs;
+const generateLogsSoftSwissV2 = (req) => {
+  console.log("Headers:");
+  console.log(req.headers);
+  console.log("Body:");
+  console.log(req.body);
+  console.log("EOL----------------------------------");
+};
+
+module.exports = { generateLogsBase, generateLogsSoftSwissV2 };

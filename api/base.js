@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const generateLogs = require("../utils/logs");
+const generateLogsBase = require("../utils/logs");
 
 let totalBalance = 123456;
 let simulateError = false;
@@ -32,7 +32,13 @@ router.post("/", (req, res) => {
         simulateError = true;
         commandToFail = command_to_fail;
 
-        generateLogs(payload, command, simulateError, commandToFail, response);
+        generateLogsBase(
+          payload,
+          command,
+          simulateError,
+          commandToFail,
+          response
+        );
         res.json(response);
         break;
 
@@ -43,7 +49,13 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command, simulateError, commandToFail, response);
+        generateLogsBase(
+          payload,
+          command,
+          simulateError,
+          commandToFail,
+          response
+        );
         res.json(response);
         break;
 
@@ -55,7 +67,13 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command, simulateError, commandToFail, response);
+        generateLogsBase(
+          payload,
+          command,
+          simulateError,
+          commandToFail,
+          response
+        );
         res.json(response);
         break;
 
@@ -67,7 +85,13 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command, simulateError, commandToFail, response);
+        generateLogsBase(
+          payload,
+          command,
+          simulateError,
+          commandToFail,
+          response
+        );
         res.json(response);
         break;
 
@@ -80,7 +104,13 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command, simulateError, commandToFail, response);
+        generateLogsBase(
+          payload,
+          command,
+          simulateError,
+          commandToFail,
+          response
+        );
         res.json(response);
         break;
 
@@ -93,7 +123,13 @@ router.post("/", (req, res) => {
           response.response_code = "error";
         }
 
-        generateLogs(payload, command, simulateError, commandToFail, response);
+        generateLogsBase(
+          payload,
+          command,
+          simulateError,
+          commandToFail,
+          response
+        );
         res.json(response);
         break;
 

@@ -1,8 +1,9 @@
 const express = require("express");
+const { generateLogsSoftSwissV2 } = require("../utils/logs");
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  console.log(req);
+  generateLogsSoftSwissV2(req);
 
   res.json({ message: "Balance retrieved", balance: 1000 });
 });

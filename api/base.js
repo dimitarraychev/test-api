@@ -74,7 +74,7 @@ router.post("/", (req, res) => {
           commandToFail,
           response
         );
-        res.json(response);
+        // res.json(response);
         break;
 
       case "add_account_game_win":

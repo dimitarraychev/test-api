@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const generateLogsBase = require("../utils/logs");
+const { generateLogsBase } = require("../utils/logs");
 
 let totalBalance = 123456;
 let simulateError = false;

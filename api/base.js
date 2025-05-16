@@ -137,13 +137,13 @@ router.post("/", (req, res) => {
         console.log("Unknown command received:", command);
         res.json({ message: "Unknown command" });
     }
+
+    if (simulateError && commandToFail === command) {
+      resetResponse();
+    }
   } catch (error) {
     console.error("Error parsing payload_json:", error);
     res.status(400).json({ message: "Invalid JSON format" });
-  }
-
-  if (simulateError && commandToFail === command) {
-    resetResponse();
   }
 });
 

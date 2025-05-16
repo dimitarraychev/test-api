@@ -5,6 +5,7 @@ const { generateLogsBase } = require("../utils/logs");
 let totalBalance = 123456;
 let simulateError = false;
 let commandToFail = "";
+const errorResponseMessage = "temporary_error ";
 
 const response = {
   currency: "EUR",
@@ -46,7 +47,7 @@ router.post("/", (req, res) => {
         response.totalbalance = totalBalance;
 
         if (simulateError && commandToFail === command) {
-          response.response_code = "error";
+          response.response_code = errorResponseMessage;
         }
 
         generateLogsBase(
@@ -64,7 +65,7 @@ router.post("/", (req, res) => {
         response.totalbalance = totalBalance;
 
         if (simulateError && commandToFail === command) {
-          response.response_code = "error";
+          response.response_code = errorResponseMessage;
         }
 
         generateLogsBase(
@@ -82,7 +83,7 @@ router.post("/", (req, res) => {
         response.totalbalance = totalBalance;
 
         if (simulateError && commandToFail === command) {
-          response.response_code = "error";
+          response.response_code = errorResponseMessage;
         }
 
         generateLogsBase(
@@ -101,7 +102,7 @@ router.post("/", (req, res) => {
         response.totalbalance = totalBalance;
 
         if (simulateError && commandToFail === command) {
-          response.response_code = "error";
+          response.response_code = errorResponseMessage;
         }
 
         generateLogsBase(
@@ -120,7 +121,7 @@ router.post("/", (req, res) => {
         response.totalbalance = totalBalance;
 
         if (simulateError && commandToFail === command) {
-          response.response_code = "error";
+          response.response_code = errorResponseMessage;
         }
 
         generateLogsBase(

@@ -3,15 +3,14 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const baseApi = require("./api/base");
-const isSoftBetApi = require("./api/iSoftBet");
+const unifiedRouter = require("./api/router"); // updated
 const softSwissV2Api = require("./api/softSwissV2");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", baseApi);
-app.use("/", isSoftBetApi);
+app.use("/", unifiedRouter); // <- this handles both base and iSoftBet
 app.use("/v2/provider_a8r.:subroute(*)", softSwissV2Api);
 
 app.listen(PORT, () => {

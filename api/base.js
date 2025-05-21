@@ -1,5 +1,3 @@
-const express = require("express");
-const router = express.Router();
 const { generateLogsBase } = require("../utils/logs");
 
 let totalBalance = 123456;
@@ -19,7 +17,7 @@ const resetResponse = () => {
   commandToFail = "";
 };
 
-router.post("/", (req, res) => {
+module.exports = (req, res) => {
   try {
     const payload = req.body.payload_json
       ? JSON.parse(req.body.payload_json)
@@ -32,120 +30,53 @@ router.post("/", (req, res) => {
       case "simulate_error":
         simulateError = true;
         commandToFail = command_to_fail;
-
-        generateLogsBase(
-          payload,
-          command,
-          simulateError,
-          commandToFail,
-          response
-        );
-        res.json(response);
         break;
 
       case "get_account_balance":
         response.totalbalance = totalBalance;
-
-        if (simulateError && commandToFail === command) {
-          response.response_code = errorResponseMessage;
-        }
-
-        generateLogsBase(
-          payload,
-          command,
-          simulateError,
-          commandToFail,
-          response
-        );
-        res.json(response);
         break;
 
       case "add_account_game_bet":
         totalBalance -= amount;
         response.totalbalance = totalBalance;
-
-        if (simulateError && commandToFail === command) {
-          response.response_code = errorResponseMessage;
-        }
-
-        generateLogsBase(
-          payload,
-          command,
-          simulateError,
-          commandToFail,
-          response
-        );
-        res.json(response);
         break;
 
       case "add_account_game_win":
         totalBalance += amount;
         response.totalbalance = totalBalance;
-
-        if (simulateError && commandToFail === command) {
-          response.response_code = errorResponseMessage;
-        }
-
-        generateLogsBase(
-          payload,
-          command,
-          simulateError,
-          commandToFail,
-          response
-        );
-        res.json(response);
         break;
 
       case "add_account_game_bet_and_win":
         totalBalance -= bet_amount;
         totalBalance += win_amount;
         response.totalbalance = totalBalance;
-
-        if (simulateError && commandToFail === command) {
-          response.response_code = errorResponseMessage;
-        }
-
-        generateLogsBase(
-          payload,
-          command,
-          simulateError,
-          commandToFail,
-          response
-        );
-        res.json(response);
         break;
 
       case "cancel":
         totalBalance += amount;
         response.freeround_limit = 0;
         response.totalbalance = totalBalance;
-
-        if (simulateError && commandToFail === command) {
-          response.response_code = errorResponseMessage;
-        }
-
-        generateLogsBase(
-          payload,
-          command,
-          simulateError,
-          commandToFail,
-          response
-        );
-        res.json(response);
         break;
 
       default:
         console.log("Unknown command received:", command);
-        res.json({ message: "Unknown command" });
+        return res.json({ message: "Unknown command" });
     }
+
+    if (simulateError && commandToFail === command) {
+      response.response_code = errorResponseMessage;
+    } else {
+      response.response_code = "ok";
+    }
+
+    generateLogsBase(payload, command, simulateError, commandToFail, response);
+    res.json(response);
 
     if (simulateError && commandToFail === command) {
       resetResponse();
     }
   } catch (error) {
-    console.error("Error parsing payload_json:", error);
+    console.error("Base API Error:", error);
     res.status(400).json({ message: "Invalid JSON format" });
   }
-});
-
-module.exports = router;
+};

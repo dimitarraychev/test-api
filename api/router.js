@@ -10,12 +10,10 @@ router.post("/", (req, res) => {
       ? JSON.parse(req.body.payload_json)
       : req.body;
 
-    // Detect iSoftBet (based on structure)
     if (payload?.action?.command && payload?.ISBskinid) {
       return isoftbetHandler(req, res);
     }
 
-    // Default to Base API
     return baseHandler(req, res);
   } catch (err) {
     console.error("Routing error:", err);

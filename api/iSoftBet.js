@@ -1,12 +1,10 @@
 const { generateLogsISoftBet } = require("../utils/logs");
 
+let totalBalance = 123456;
+
 const response = {
   status: "success",
-  sessionid: "LRzyoAhcB0za3B3HcBJayvk57OqF1YUd",
-  playerid: "frankId",
-  username: "frankId",
   currency: "EUR",
-  balance: 10860,
 };
 
 module.exports = (req, res) => {
@@ -15,15 +13,30 @@ module.exports = (req, res) => {
       ? JSON.parse(req.body.payload_json)
       : req.body;
 
-    const { command } = payload.action || {};
+    const { command, parameters } = payload.action || {};
 
     generateLogsISoftBet(req);
 
     if (command === "initsession") {
+      response.sessionid = "LRzyoAhcB0za3B3HcBJayvk57OqF1YUd";
+      response.playerid = "mitko";
+      response.username = "mitko";
+      response.balance = totalBalance;
       return res.json(response);
     }
 
-    // Add more iSoftBet commands here...
+    if (command === "bet") {
+      totalBalance -= parameters.amount;
+      response.balance = totalBalance;
+      return res.json(response);
+    }
+
+    if (command === "win") {
+      totalBalance += parameters.amount;
+      response.balance = totalBalance;
+      return res.json(response);
+    }
+
     return res.status(400).json({ message: "Unknown iSoftBet command" });
   } catch (err) {
     console.error("iSoftBet handler error:", err);

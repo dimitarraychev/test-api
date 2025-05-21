@@ -15,7 +15,6 @@ module.exports = (req, res) => {
 
     generateLogsISoftBet(req);
 
-    // Handle single action (state: "single")
     if (payload.action) {
       const { command, parameters } = payload.action;
 
@@ -39,10 +38,25 @@ module.exports = (req, res) => {
         return res.json({ ...baseResponse, balance: totalBalance });
       }
 
+      if (command === "balance") {
+        return res.json({ ...baseResponse, balance: totalBalance });
+      }
+
+      if (command === "cancel") {
+        return res.json({ ...baseResponse, balance: totalBalance });
+      }
+
+      if (command === "end") {
+        return res.json({ ...baseResponse, balance: totalBalance });
+      }
+
+      if (command === "depositmoney") {
+        return res.json({ ...baseResponse, balance: totalBalance });
+      }
+
       return res.status(400).json({ message: "Unknown iSoftBet command" });
     }
 
-    // Handle multiple actions (state: "multi")
     if (Array.isArray(payload.actions)) {
       for (const action of payload.actions) {
         const { command, parameters } = action;

@@ -25,4 +25,18 @@ const generateLogsSoftSwissV2 = (req) => {
   console.log("EOL----------------------------------");
 };
 
-module.exports = { generateLogsBase, generateLogsSoftSwissV2 };
+const generateLogsISoftBet = (req) => {
+  console.log("URL:");
+  console.log(req.url);
+  console.log("Headers:");
+  console.log(req.headers);
+  console.log("Body:");
+  console.log(req.body);
+  console.log("EOL----------------------------------");
+};
+
+module.exports = {
+  generateLogsBase,
+  generateLogsSoftSwissV2,
+  generateLogsISoftBet,
+};

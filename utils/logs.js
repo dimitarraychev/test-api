@@ -32,6 +32,8 @@ const generateLogsISoftBet = (req) => {
   console.log(req.headers);
   console.log("Body:");
   console.log(req.body);
+  console.log("Additional Game Values:");
+  console.log(req.body.action.parameters.additional_game_values);
   console.log("EOL----------------------------------");
 };
 

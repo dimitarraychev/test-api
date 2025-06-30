@@ -1,10 +1,12 @@
 const generateLogsBase = (
+  headers,
   payload,
   command,
   simulateError,
   commandToFail,
   response
 ) => {
+  console.log(`Headers: ${headers}`);
   console.log(`Received Command: ${command}`);
   console.log("Payload:");
   console.log(payload);

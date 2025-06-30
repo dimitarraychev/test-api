@@ -69,7 +69,14 @@ module.exports = (req, res) => {
       response.response_code = "ok";
     }
 
-    generateLogsBase(payload, command, simulateError, commandToFail, response);
+    generateLogsBase(
+      req.headers,
+      payload,
+      command,
+      simulateError,
+      commandToFail,
+      response
+    );
     res.json(response);
 
     if (simulateError && commandToFail === command) {

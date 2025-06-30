@@ -20,8 +20,9 @@ router.get("/balance", (req, res) => {
 
 router.post("/bet", (req, res) => {
   const { amount } = req.body;
+  const transactionId = crypto.randomUUID();
   balance -= amount;
-  res.send({ balance });
+  res.send({ balance, transactionId });
 });
 
 router.post("/win", (req, res) => {

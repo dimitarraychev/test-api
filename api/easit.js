@@ -1,20 +1,48 @@
 const express = require("express");
 const router = express.Router();
 
-const sessionRes = {
-  playerId: 1234,
-  gameId: "1000",
-  currency: "EUR",
-  token: crypto.randomUUID(),
-};
+let balance = 1234567;
 
 router.get("/session", (req, res) => {
-  console.log(req);
+  const sessionRes = {
+    playerId: 1234,
+    gameId: "1000",
+    currency: "EUR",
+    token: crypto.randomUUID(),
+  };
+
   res.send(sessionRes);
 });
 
-router.get("/somethingelse", (req, res) => {
-  res.send("Something else endpoint");
+router.get("/balance", (req, res) => {
+  res.send({ balance });
+});
+
+router.post("/bet", (req, res) => {
+  const { amount } = req.body;
+  balance -= amount;
+  res.send({ balance });
+});
+
+router.post("/win", (req, res) => {
+  const { amount } = req.body;
+  const transactionId = crypto.randomUUID();
+  balance += amount;
+  res.send({ balance, transactionId });
+});
+
+router.post("/jackpotwin", (req, res) => {
+  const { amount } = req.body;
+  const transactionId = crypto.randomUUID();
+  balance += amount;
+  res.send({ balance, transactionId });
+});
+
+router.post("/refund", (req, res) => {
+  const { amount } = req.body;
+  const transactionId = crypto.randomUUID();
+  balance += amount;
+  res.send({ balance, transactionId });
 });
 
 module.exports = router;

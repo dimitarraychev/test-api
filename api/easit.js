@@ -22,28 +22,28 @@ router.post("/bet", (req, res) => {
   const { amount } = req.body;
   const transactionId = crypto.randomUUID();
   balance -= amount;
-  res.send({ balance, transactionId });
+  res.json({ balance, transactionId });
 });
 
 router.post("/win", (req, res) => {
   const { amount } = req.body;
   const transactionId = crypto.randomUUID();
   balance += amount;
-  res.send({ balance, transactionId });
+  res.json({ balance, transactionId });
 });
 
 router.post("/jackpotwin", (req, res) => {
   const { amount } = req.body;
   const transactionId = crypto.randomUUID();
   balance += amount;
-  res.send({ balance, transactionId });
+  res.json({ balance, transactionId });
 });
 
 router.post("/refund", (req, res) => {
   const { amount } = req.body;
   const transactionId = crypto.randomUUID();
   balance += amount;
-  res.send({ balance, transactionId });
+  res.json({ balance, transactionId });
 });
 
 module.exports = router;
